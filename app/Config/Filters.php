@@ -25,6 +25,10 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth'          => \App\Filters\Auth::class,
+        'noauth'        => \App\Filters\Noauth::class,
+        // 'userscheck'    => \App\Filters\UsersClassCheck::class,
+        'usermoderator' => \App\Filters\UserModerator::class,
     ];
 
     /**
@@ -39,6 +43,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            // 'userscheck',
         ],
         'after' => [
             'toolbar',
