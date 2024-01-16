@@ -16,7 +16,7 @@ foreach ($data as $row) : ?>
             <div class="row px-3 py-1">
                 <div class="col-12 card py-3 shadow hover-zoom">
                     <a href="/buildings/info/<?= $row['id'] ?>" class="text-decoration-none text-white">
-                        <div class="bg-image d-flex justify-content-center align-items-center building-card-title">
+                        <div class="bg-image d-flex justify-content-center align-items-center custom-card bg-img-building">
                             <div class="row p-1">
                                 <div class="col">
                                     <h3 class="text-center"><?= $row['name'] ?></h3>

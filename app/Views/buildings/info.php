@@ -18,7 +18,11 @@
 
 <div class="d-flex justify-content-center align-items-center m-0 border-0 pt-1">
     <!-- Address -->
-    <p class="d-flex"><i class="bi bi-geo-alt-fill mx-2"></i><?= $current_building_info['address'] ?></p>
+    <p class="d-flex"><i class="bi bi-geo-alt-fill mx-2"></i>
+        <a href="http://www.google.com/search?q=<?=str_replace(" ", "+", $current_building_info['address'])?>">
+            <?= $current_building_info['address'] ?>
+        </a>
+    </p>
 </div>
 
 <!-- Description -->
@@ -36,7 +40,7 @@
 <div class="row p-3 d-flex justify-content-center">
     <div class="col-12 card py-3 hover-zoom shadow">
         <a href="/rooms/by_building/<?= $current_building_info['id'] ?>" class="text-decoration-none text-white">
-            <div class="bg-image d-flex justify-content-center align-items-center room-card">
+            <div class="bg-image d-flex justify-content-center align-items-center custom-card bg-img-floor">
                 <h1>Przegląd pokoi</h1>
             </div>
         </a>

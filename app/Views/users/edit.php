@@ -7,14 +7,14 @@
 
             <form class="" action="/users/edit/<?= $data['id'] ?>" method="post">
                 <div class="row">
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-lg-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="firstname">Imię</label>
                             <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname', $data['firstname']) //second param is default value
                                                                                                             ?>" required>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-lg-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="lastname">Nazwisko</label>
                             <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname', $data['lastname']) ?>" required>
@@ -26,13 +26,13 @@
                             <input type="text" class="form-control" name="email" id="email" value="" placeholder="<?= $data['email'] ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-xl-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="password">Nowe hasło (opcjonalnie)</label>
                             <input type="password" class="form-control" name="password" id="password" value="">
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-xl-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="password_confirm">Potwierdź nowe hasło (opcjonalnie)</label>
                             <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">

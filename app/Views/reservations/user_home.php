@@ -27,7 +27,7 @@ else $number = 0;
             <?php if ($number > 0) : ?>
                 <?php if ($number == 1) : ?>
                     <!-- <p class="fw-bold text-danger">Zalegasz z 1 opłatą czynszu!</p> -->
-                    <p class="d-flex fw-bold text-warning"><i class="bi bi-exclamation-triangle-fill mx-2"></i>Zalegasz z 1 opłatą czynszu!</p>
+                    <p class="d-flex fw-bold text-danger-emphasis"><i class="bi bi-exclamation-triangle-fill mx-2"></i>Zalegasz z 1 opłatą czynszu!</p>
                 <?php else :   ?>
                     <!-- <p class="fw-bold text-danger">Zalegasz z <?= $number ?> opłatami czynszu!</p> -->
                     <p class="d-flex fw-bold text-danger"><i class="bi bi-exclamation-circle-fill mx-2"></i>Zalegasz z <?= $number ?> opłatami czynszu!</p>

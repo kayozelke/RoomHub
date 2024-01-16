@@ -339,23 +339,19 @@ main {
 /*  */
 
 
-.building-card-title {
-  background-image: url('/assets/images/dormitory/building-1-low-contr.jpg');
+.custom-card {
   height: 110px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
-.building-card-title-min {
+/* .building-card-title-min {
   background-image: url('/assets/images/dormitory/building-1-low-contr.jpg');
   height: 60px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
+} */
 
-.room-card {
+/* .room-card {
   background-image: url('/assets/images/dormitory/floor-1-low-dimmed.jpg');
   height: 110px;
   background-size: cover;
@@ -369,10 +365,10 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
+} */
 
 .bg-img-building {
-  background-image: url('/assets/images/dormitory/building-1-low-contr.jpg');
+  background-image: url('/assets/images/dormitory/building-1-dimmed-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -386,7 +382,7 @@ main {
 } */
 
 .bg-img-floor {
-  background-image: url('/assets/images/dormitory/floor-1-low-dimmed.jpg');
+  background-image: url('/assets/images/dormitory/floor-1-dimmed-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -402,21 +398,21 @@ main {
 }
 
 .bg-img-room {
-  background-image: url('/assets/images/dormitory/room-inside-1-dimmed.jpg');
+  background-image: url('/assets/images/dormitory/room-inside-1-dimmed-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
 .bg-img-books {
-  background-image: url('/assets/images/dormitory/room-books-dimmed.jpg');
+  background-image: url('/assets/images/dormitory/room-books-dimmed-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
 .bg-img-people {
-  background-image: url('/assets/images/dormitory/people-1.jpg');
+  background-image: url('/assets/images/dormitory/people-1-dimmed-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

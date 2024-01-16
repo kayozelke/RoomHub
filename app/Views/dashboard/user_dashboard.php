@@ -35,7 +35,7 @@
                     <p class="d-flex my-0 py-0">
                         <i class="bi bi-exclamation-circle-fill  mx-2"></i>
                         Prosimy o uregulowanie opłat za najem pokoju.
-                        <a class="ms-1 text-warning" href="/reservations">Sprawdź szczegóły
+                        <a class="ms-1 text-danger-emphasis" href="/reservations">Sprawdź szczegóły
                         </a>.
                     </p>
                 </div>

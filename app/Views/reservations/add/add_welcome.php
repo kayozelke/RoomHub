@@ -12,7 +12,7 @@
                         <input class="form-control" list="userList" name="user_email" placeholder="Wyszukaj..." id="user_email" required value="<?=(isset($current_user_email) && $current_user_email) ? $current_user_email : null?>">
                         <datalist id="userList">
                             <?php foreach ($users as $row) : ?>
-                                <option value="<?= $row['email'] ?>"><?= $row['firstname'] . ' ' . $row['lastname'] ?></option>
+                                <option value="<?= $row['email'] ?>"><?= $row['firstname'] . ' ' . $row['lastname'] . ' | ' . $row['email'] ?></option>
                             <?php endforeach; ?>
                         </datalist>
                     </div>
@@ -103,7 +103,7 @@
                     data.forEach(room => {
                         var option = document.createElement('option');
                         option.value = room.room_number;
-                        option.textContent = room.room_type_name;
+                        option.textContent = room.room_number + " | " + room.room_type_name;
                         roomDataList.appendChild(option);
                     });
                     if (data.length == 0) {

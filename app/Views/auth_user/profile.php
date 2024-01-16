@@ -9,17 +9,17 @@
             <form class="" action="/profile" method="post">
                 <!-- <form class="" action="<?= base_url('/users/profile') ?>" method="post"> -->
                 <div class="row">
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-lg-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="firstname">Imię</label>
                             <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname', $user['firstname']) //second param is default value
-                                                                                                            ?>" required>
+                                                                                                            ?>" required <?=(!(session()->isModerator)) ? 'disabled' : null ?>>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-lg-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="lastname">Nazwisko</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname', $user['lastname']) ?>" required>
+                            <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname', $user['lastname']) ?>" required <?=(!(session()->isModerator)) ? 'disabled' : null ?>>
                         </div>
                     </div>
                     <div class="col-12 pt-1 pb-1">
@@ -28,13 +28,13 @@
                             <input type="text" class="form-control" disabled id="email" value="<?= $user['email'] ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-xl-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="password">Nowe hasło (opcjonalnie)</label>
                             <input type="password" class="form-control" name="password" id="password" value="">
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 pt-1 pb-1">
+                    <div class="col-12 col-xl-6 pt-1 pb-1">
                         <div class="form-group">
                             <label for="password_confirm">Potwierdź nowe hasło (opcjonalnie)</label>
                             <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
