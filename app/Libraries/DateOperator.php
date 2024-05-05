@@ -95,7 +95,7 @@ class DateOperator
 
     public function isDifferenceMoreThanMonth(string $first_date_str, string $second_date_str): bool
     {
-        // simple check if difference between two days is more than one month (31 * 24 hours)
+        // simple check if difference between two days is more than one rent-month (31 * 24 hours)
 
         if (strtotime($first_date_str) + 31 * 24 * 3600 > strtotime($second_date_str))
             return false;
@@ -156,7 +156,7 @@ class DateOperator
         // first month setup
         $nextStartDate = $start_date_str;
 
-        // loop through months
+        // loop through added months
         for ($i = 0; $i <= $monthDifference; $i++) {
             // echo $i . '. <br>';
             $currentMonthData = [];
@@ -179,69 +179,6 @@ class DateOperator
                 }
             }
 
-                // * NOT USED ANYMORE
-                    // These two loops below help the divider when first-day is more than 28:
-                    // - to avoid 32-day elements
-                    // - to keep the day of start date of every element as much close to the day number of first beginning date (as much as possible).
-
-                    // Stick to the same end-day as at the final date. Used when previous month had less than 31 days
-                    // * Example 
-                        // Assume that start date is 2024-01-30 and end date is 2024-04-29 (full 3 elements in our system - it is 3 months with unusual offset of 30th day as start day).
-                        // Also let us assume that second while-loop (the one right below this one) is disabled.
-                        // When the general start date is 2024-01-30, then first addMonthsSafely($startdate, 1) will return 2024-02-28 (1 day less than full 29-days month).
-                        //   2024-01-30 -> 2024-02-28 (30 days total)
-                        // Let us use addMonthsSafely() few more times:
-                        //   2024-02-29 -> 2024-03-30 (as end-date does NOT returning 28th BUT 30th, because start date(29th) was the last day of previous month) (31 days total) 
-                        //   2024-03-31 -> 2024-04-29 (we can see that start date is 31, but our general start date was 30. This behaviour is unwanted. )(30 days total)
-                        // Using this loop causes end-date day to stick more to the day of final last month. Let us see how divider will act with substracting enabled:
-                        //   2024-01-31 -> 2024-02-28
-                        //   2024-02-29 -> 2024-03-29 (end date day is 29th instead of 30th. one day was substracted)
-                        //   2024-03-30 -> 2024-04-29 (start date is the same as at the beginning. it is success!)
-                        // Substracting is allowed only when:
-                        // - start offset reached 29th, 30th or 31th day
-                        // - current element's end-date day is > than final end-date day
-                        // - final end-date-day is not equal end-date-month last day (???????????????)
-                    // *
-                    // while(date('d', strtotime($currentEndDate)) > $lastDay && date('d', strtotime($end_date_str)) != date('t', strtotime($end_date_str)) && $firstDay > 28 ){
-                    //     print_r(" - - - minus 1 day <br>");
-                    //     $currentEndDate = (new DateTime($currentEndDate))->modify('-1 day')->format('Y-m-d');
-                    //     // + 1 day than end date
-                    //     $nextStartDate = (new DateTime($currentEndDate))->modify('+1 day')->format('Y-m-d');
-                    // }
-                    
-                    // Try to add a few days when it is possible, so we are sticking with end-day as close at it is possible to the day from the final date
-                    // * Example 
-                    // ????????? not working with new substracter
-                        // Assume that start date is 2024-01-31 and end date is 2024-05-30 (full 4 elements in our system - it is 4 months with unusual offset of 31th day as start day)
-                        // Also let us assume that the first while-loop (the one above) is enabled.
-                        // When the general start date is 2024-01-31, then first addMonthsSafely($startdate, 1) will return 2024-02-28 (1 day less than full 29-days month).
-                        // Not using the loop below we would cause the date 2024-02-28 to be the end date of current element and 2024-02-29 to be the the first date of next element.
-                        // Right now it might be looking fine but when we look at the next month ...
-                        //   2024-01-31 -> 2024-02-28
-                        //   2024-02-29 -> 2024-03-30
-                        //   2024-03-31 -> 2024-04-29 (... we can see that we are loosing ONE day - it actually should be 30th not 29th)
-                        //   2024-04-30 -> 2024-05-30 (31 days total at this element)
-                        // Numbers of days in both last dates are equal. Beaware that month nr 4 (April) is 30-day month.
-                        // If it happens on 31-day month (January,March,May, etc...) then days count at this element will reach 32 which is unwanted!!! Maximum count should be 31.
-                        // 
-                        // To fix this small offset we are adding 1 day to current end day when all conditions are matched:
-                        // - start offset reached 29th, 30th or 31th day
-                        // - current end day is smaller than the number of day from final date
-                        // - it is possible to increase number of days at current month
-                        // Finally, with the input data like above we have:
-                        //   2024-01-31 -> 2024-02-29 (instead of 28th at end date, 30 days total) 
-                        //   2024-03-01 -> 2024-03-30 (start date is changed, 30 days total)
-                        //   2024-03-31 -> 2024-04-30 (end-date changed again, 31 days total)
-                        //   2024-05-01 -> 2024-04-30 (start date is changed, 30 days total)
-                    // *
-
-                    // while(date('d', strtotime($currentEndDate)) < $lastDay && date('d', strtotime($currentEndDate)) < date('t', strtotime($currentEndDate)) && $firstDay > 28 ){
-                    //     print_r(" + + + plus 1 day <br>");
-                    //     $currentEndDate = (new DateTime($currentEndDate))->modify('+1 day')->format('Y-m-d');
-                    //     // + 1 day than end date
-                    //     $nextStartDate = (new DateTime($currentEndDate))->modify('+1 day')->format('Y-m-d');
-                    // }
-                // *
 
 
             $currentMonthData['start'] = $currentStartDate;
@@ -271,40 +208,40 @@ class DateOperator
         // print_r($returnData);
         // echo '<br>';
 
-        // DEBUG ONLY - TODO
-        if(!$this->checkStartEndDateArrayContinuity($returnData)){
-            throw new \Exception('PLEASE DEBUG checkStartEndDateArrayContinuity()');
-        };
+        // DEBUG ONLY
+        // if(!$this->checkStartEndDateArrayContinuity($returnData)){
+        //     throw new \Exception('PLEASE DEBUG checkStartEndDateArrayContinuity()');
+        // };
 
         return $returnData;
     }
 
-    public function checkStartEndDateArrayContinuity($data){
-        // This function was used for for testing getDividedTimeDates()
+    // public function checkStartEndDateArrayContinuity($data){
+    //     // This function was used for for testing getDividedTimeDates()
 
-        if ($data){
-            if(count($data) == 1){
-                return true;
-            }
-            $previous_end_date = (new DateTime($data[0]['start']))->modify('-1 day')->format('Y-m-d');
+    //     if ($data){
+    //         if(count($data) == 1){
+    //             return true;
+    //         }
+    //         $previous_end_date = (new DateTime($data[0]['start']))->modify('-1 day')->format('Y-m-d');
 
-            foreach($data as $element){
+    //         foreach($data as $element){
     
-                // print_r('previous_end_date: '.$previous_end_date.'<br>');
-                // print_r('element start: '.$element['start'].'<br>');
-                // print_r('element end: '.$element['end'].'<br>');
+    //             // print_r('previous_end_date: '.$previous_end_date.'<br>');
+    //             // print_r('element start: '.$element['start'].'<br>');
+    //             // print_r('element end: '.$element['end'].'<br>');
                 
-                if ($this->checkIfTwoDaysAreNeighbours($previous_end_date,$element['start'])){
-                    // print_r("OK <br>");
-                    $previous_end_date = $element['end'];
-                } else {
-                    return false;                    
-                }
+    //             if ($this->checkIfTwoDaysAreNeighbours($previous_end_date,$element['start'])){
+    //                 // print_r("OK <br>");
+    //                 $previous_end_date = $element['end'];
+    //             } else {
+    //                 return false;                    
+    //             }
                 
-            }
-            return true;
-        } else return false;
-    }
+    //         }
+    //         return true;
+    //     } else return false;
+    // }
 
     public function checkIfTwoDaysAreNeighbours($first_date_str, $second_date_str){
         if ((new DateTime($first_date_str))->modify('+1 day')->format('Y-m-d') == $second_date_str){

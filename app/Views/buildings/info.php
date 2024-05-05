@@ -60,7 +60,7 @@
                     <thead>
                         <tr>
                             <th scope="col" class="text-center align-middle">Liczba pokoi</th>
-                            <th scope="col" class="text-center align-middle">Wszystkie miejsca</th>
+                            <th scope="col" class="text-center align-middle">Liczba miejsc</th>
                             <th scope="col" class="text-center align-middle">Dostępne miejsca</th>
                             <th scope="col" class="text-center align-middle">Zajęte miejsca</th>
                         </tr>

@@ -10,25 +10,18 @@ use App\Models\RoomModel;
 class Buildings extends BaseController
 {
     public function index()
-    {
-        // TODO make it handled in routes
-        // if(!(session()->get('isLoggedIn')))
-        //     return redirect()->to('/');
-        
+    {        
         $data = [];
         $model = new BuildingModel();
         
         $data['data'] = $model->findAllOrdered();
        
 
-
         echo view('templates/header', $data);
         echo view('buildings/buildings', $data);
         echo view('templates/footer');
         
         
-        // print_r (session()->get());
-        // return view('welcome_message');
     }
     
     public function info($id){
@@ -37,8 +30,6 @@ class Buildings extends BaseController
         $building_model = new BuildingModel();
         $room_model = new RoomModel();
         $reservation_model = new ReservationModel();
-
-        // $data['data'] = $model->findAllByBuildingId($id);
         
         $data['current_building_info'] = $building_model->find($id);
 
@@ -71,8 +62,8 @@ class Buildings extends BaseController
 
     public function add(){
 
-        // not used since we have CI filters => app/Config/Routes.php + Filters.php
-
+        // not used since we use CI filters => app/Config/Routes.php + Filters.php
+        
         // if(session()->get('id')){
         //     $PrivilegesManagerObject = new PrivilegesManager();
         //     // check if current user is at least moderator (priveleges level >= 1)
@@ -84,7 +75,7 @@ class Buildings extends BaseController
 
         $model = new BuildingModel();
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getPost()) {
 
             $newData = [
                 'address' => esc($this->request->getVar('address')),
@@ -99,13 +90,7 @@ class Buildings extends BaseController
             // CodeIgniter supports “flashdata”, or session data that will only be available for the next request, and is then automatically cleared.
             $session->setFlashdata('success', 'Obiekt został dodany pomyślnie!');
             return redirect()->to('/buildings');
-
-            // echo view('templates/header');
-            // echo "<br>";
-            // print_r($newData);
-            // echo "<br>";
-            // echo view('templates/footer');
-            // return null;
+            
         }
         
         $data = [];
@@ -122,7 +107,7 @@ class Buildings extends BaseController
 
     public function edit($id){
 
-        // not used since we have CI filters => app/Config/Routes.php + Filters.php
+        // not used since we use CI filters => app/Config/Routes.php + Filters.php
         
         // if(session()->get('id')){
         //     $PrivilegesManagerObject = new PrivilegesManager();
@@ -138,7 +123,7 @@ class Buildings extends BaseController
         $data = [];
         $data['data'] = $model->find($id);
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getPost()) {
             
             $newData = [
                 'address' => esc($this->request->getVar('address')),

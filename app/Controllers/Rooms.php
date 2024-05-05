@@ -12,16 +12,7 @@ class Rooms extends BaseController
 {
     public function index()
     {
-        # TODO - delete or expand this function
-        $data = [];        
-        $model = new RoomModel();
-        
-        $data['data'] = $model->findAll();
-
-        echo view('templates/header');
-        echo view('rooms', $data);
-        echo view('templates/footer');
-
+        return redirect()->to('/buildings');
     }
 
     public function by_building($id)
@@ -72,18 +63,12 @@ class Rooms extends BaseController
             }
             else {
                 $data = $this->request->getPost();     
-                // $room_model->save($data);
                 $room_model->insert($data);
                 
                 $new_room_id = $room_model->getInsertID();
                 
-                
                 // * automatically add slots
-                    print_r($data);
                     $room_type_data = $room_type_model->find($data['room_type_id']);
-
-                    echo '<br>';
-                    print_r($room_type_data);
 
                     for($i=1; $i<=$room_type_data['max_residents']; $i++){
                         $newSlotData = [
@@ -91,14 +76,9 @@ class Rooms extends BaseController
                             'room_id' => $new_room_id,
                             'room_building_id' => $data['building_id']
                         ];
-                        echo '<br> --- <br>';
-                        print_r($newSlotData);
                         $slot_model->save($newSlotData);
                     }
-
                 // *
-                
-                // return null;
 
                 session()->setFlashdata('success', 'Dodano pomyślnie!');
                 return redirect()->to('/rooms/by_building/'.$data['building_id']);

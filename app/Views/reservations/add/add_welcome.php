@@ -90,7 +90,7 @@
         buildingSelect.addEventListener('change', function() {
             var selectedBuildingId = this.value;
             roomSelect.value = '';
-            // slotSelect.innerHTML = '<option value="">Brak danych</option>';
+            slotSelect.innerHTML = '<option value="">Brak danych</option>';
 
             // AJAX fetching when building_id changed
             fetch('/get_rooms_of_building/' + selectedBuildingId)

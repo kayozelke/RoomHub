@@ -103,11 +103,13 @@
 
 
 
+
+
+
 <script>
-    // Pobierz wszystkie elementy z klasą 'zoomable'
+    // Zoom when hover object 'zoomable' objects
     var zoomableElements = document.getElementsByClassName('zoomable');
 
-    // Dodaj nasłuchiwanie dla każdego elementu
     Array.from(zoomableElements).forEach(function(element) {
         element.addEventListener('mouseover', function() {
             this.classList.add('zoom-effect');

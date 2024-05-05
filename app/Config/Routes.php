@@ -5,14 +5,14 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-// $routes->get('/', 'AuthController::index', ['filter' => 'noauth']);
+
+ 
+// some of methods below are for administrator-only and some for everyone
+
 $routes->match(['get','post'],      '/',                         'AuthController::index',        ['filter' => 'noauth']);
-// $routes->post('/', 'AuthController::index');
 
 $routes->get('logout', 'AuthController::logout');
 $routes->match(['get','post'],      'register',                  'AuthController::register',     ['filter' => 'noauth']);
-// $routes->get('/profile', 'AuthController::profile');
-// $routes->post('/profile', 'AuthController::profile', ['filter' => 'auth']);
 $routes->match(['get','post'],      'profile',                   'AuthController::profile',      ['filter' => 'auth']);
 
 $routes->get('dashboard', 'Dashboard::index',['filter' => 'auth']);
@@ -27,8 +27,6 @@ $routes->get('dashboard', 'Dashboard::index',['filter' => 'auth']);
     // add
 
 // buildings
-// some of these methods are for administrator and some for everyone
-// TODO: ???? -> 'we are implementing code-protection inside of specific functions'
     $routes->match(['get','post'],  'buildings',                 'Buildings::index',             ['filter' => ['auth']]);
     $routes->match(['get','post'],  'buildings/info/(:segment)', 'Buildings::info/$1',           ['filter' => ['auth'] ]);
     $routes->match(['get','post'],  'buildings/add',             'Buildings::add',               ['filter' => ['auth', 'usermoderator'] ]);
@@ -83,9 +81,4 @@ $routes->get('dashboard', 'Dashboard::index',['filter' => 'auth']);
 
 
 
-//TEST ONLY
-$routes->get('test', 'TestController::index', ['filter' => ['auth', 'usermoderator'] ]);
-$routes->match(['get','post'],'test_get_some_data', 'TestController::test_get_some_data', ['filter' => ['auth', 'usermoderator'] ]);
-// $routes->get('buildings/add', 'AuthController::foo', ['filter' => ['auth', 'usermoderator'] ]);
-
-$routes->get('calendar', 'CalendarController::index');
+// 

@@ -71,8 +71,8 @@
                 <th scope="col" class="text-center align-middle">ID</th>
             <?php endif; ?>
             <th scope="col" class="text-center align-middle">Opis</th>
-            <th scope="col" class="text-center align-middle">Stan</th>
             <?php if (session()->get('isModerator')) : ?>
+                <th scope="col" class="text-center align-middle">Stan</th>
                 <th scope="col" class="text-center align-middle">Akcje</th>
             <?php endif; ?>
         </tr>
@@ -84,22 +84,22 @@
                     <td class="text-center align-middle"><?= $row['id']; ?></td>
                 <?php endif; ?>
                 <td class="text-center align-middle"><?= $row['name']; ?></td>
-                <td class="text-center align-middle">
-                    <a href="/reservations/by_filter?building_id=<?= $building_data['id'] ?>&room_number=<?= $room_data['number'] ?>">
-                        <?php if ($row['isFree'] == true) : ?>
-                            Wolne
-                            <?php if ($row['nextStartDate']) : ?>
-                                do <?= $row['nextStartDate'] ?>
-                                <?php //else : 
-                                ?>
-                                <!-- (brak rezerwacji) -->
-                            <?php endif; ?>
-                        <?php else : ?>
-                            Zajęte do <?= $row['nextEndDate'] ?>
-                        <?php endif; ?>
-                    </a>
-                </td>
                 <?php if (session()->get('isModerator')) : ?>
+                    <td class="text-center align-middle">
+                        <a href="/reservations/by_filter?building_id=<?= $building_data['id'] ?>&room_number=<?= $room_data['number'] ?>">
+                            <?php if ($row['isFree'] == true) : ?>
+                                Wolne
+                                <?php if ($row['nextStartDate']) : ?>
+                                    do <?= $row['nextStartDate'] ?>
+                                    <?php //else : 
+                                    ?>
+                                    <!-- (brak rezerwacji) -->
+                                <?php endif; ?>
+                            <?php else : ?>
+                                Zajęte do <?= $row['nextEndDate'] ?>
+                            <?php endif; ?>
+                        </a>
+                    </td>
                     <td class="text-center align-middle">
                         <!-- <a href="#" class="btn btn-sm btn-primary bg-gradient">Zarezerwuj</a> -->
                         <a href="/rooms/<?= $room_data['id'] ?>/add_slot/<?= $row['id']; ?>" class="btn btn-sm btn-secondary bg-gradient">Edytuj</a>

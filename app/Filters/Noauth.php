@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Noauth implements FilterInterface
+class NoAuth implements FilterInterface
 {
     // you have to type both before() and after() even if you dont use one of them
 

@@ -87,14 +87,6 @@ class RoomModel extends Model{
             ->getResultArray();
     }
 
-    // TODO - wrong function - 'column named 'id' from 'room' is overwritten by joining table
-    // function where_building_join_slot($building_id){
-    //     return $this -> db -> table ('room') 
-    //                         ->where('building_id =', $building_id)
-    //                         ->join('slot','slot.room_id = room.id', 'inner') //inner is default
-    //                         -> get()
-    //                         -> getResultArray();
-    // }
 
     function findJoinSlots($id) {
         return $this->db->table('room')

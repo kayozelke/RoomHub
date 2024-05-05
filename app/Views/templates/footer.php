@@ -118,7 +118,7 @@
 
 <script>
     $(document).ready(function() {
-        $("#loader").fadeOut(100);
+        $("#loader").fadeOut(200);
     });
 </script>
 
