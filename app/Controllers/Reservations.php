@@ -305,10 +305,22 @@ class Reservations extends BaseController
         // *
         // echo "my payment done = $payment_done";
         // V2
+        $start_date_arg = null;
+        $end_date_arg = null;
+        if(!is_null($start_date) && $start_date != ""){
+            $start_date_arg = ">= '".$start_date."'";
+            print_r("using start date: $start_date");
+        }
+        if(!is_null($end_date) && $end_date != ""){
+            $end_date_arg = "<= '".$end_date."'";
+            print_r("using end date: $end_date");
+        }
+
+
         if(isset($data['current_query']['show_deleted'])){
-            $data['data'] = $reservation_model -> findReservationsQuery($reservation_id, $user_email, $building_id, $room_number, $start_date, $end_date, $payment_done, true);
+            $data['data'] = $reservation_model -> findReservationsQuery($reservation_id, $user_email, $building_id, $room_number, $start_date_arg, $end_date_arg, $payment_done, true);
         } else {
-            $data['data'] = $reservation_model -> findReservationsQuery($reservation_id, $user_email, $building_id, $room_number, $start_date, $end_date, $payment_done, false);
+            $data['data'] = $reservation_model -> findReservationsQuery($reservation_id, $user_email, $building_id, $room_number, $start_date_arg, $end_date_arg, $payment_done, false);
         }
 
         // add new column 'status' to existing data

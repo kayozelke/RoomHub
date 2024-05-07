@@ -286,7 +286,7 @@ class ReservationModel extends Model
 
     public function findReservationsQuery($reservation_id = null, $user_email = null, $building_id = null, $room_number = null, 
     $start_date = null, $end_date = null, $payment_done = null, $include_deleted = false, $order = "end_time ASC"){
-        echo 'TEST<br>';
+        // echo 'TEST<br>';
         $query = $this->db->table('reservation')
             ->select('
                         reservation.id as reservation_id,
@@ -322,43 +322,117 @@ class ReservationModel extends Model
             $query->where('reservation.deleted_at IS NULL');
         }
         // by id
-        if($reservation_id){
+        if(!is_null($reservation_id) && $reservation_id){
             // echo "reservation_id = $reservation_id <br>";
             $query->where('reservation.id = ' . $reservation_id);
         }
-        if($user_email){
+        if(!is_null($user_email) && $user_email){
             // echo "user_email = $user_email <br>";
             $query->where('user.email = "' . $user_email . '"');
         }
-        if($building_id){
+        if(!is_null($building_id) && $building_id){
             // echo "building_id = $building_id <br>";
             $query->where('building.id = ' . $building_id);
         }
         // by room_number (part containing)
-        if($room_number){
+        if(!is_null($room_number) && $room_number){
             // echo "room_number LIKE %$room_number% <br>";
             $query->where('room.number LIKE "%' . $room_number . '%"');
         }
-        
-        if($payment_done || $payment_done == 0){
+        if(!is_null($payment_done) && $payment_done){
             // echo "payment_done = $payment_done <br>";
             $query->where('reservation.payment_done = ' . $payment_done);
         }
         
         // filter by dates
-        if($start_date){
-            echo "where('reservation.end_time (actually a start) >= ' . $start_date)" ;
-            $query->where('reservation.end_time >= "' . $start_date . '"');
+        if(!is_null($start_date) && $start_date){
+            // echo "where('reservation.start_time (actually a start) >= ' . $start_date)" ;
+            $query->where('reservation.start_time '. $start_date);
         }
-        if($end_date){
-            echo "where('reservation.start_time (actually the end) <= ' . $end_date)" ;
-            $query->where('reservation.start_time <= "' . $end_date . '"');
+        if(!is_null($end_date) && $end_date){
+            // echo "where('reservation.end_time (actually the end) <= ' . $end_date)" ;
+            $query->where('reservation.end_time ' . $end_date);
         }
-
 
         return $query->get()->getResultArray();
 
     }
+
+    public function countReservationsQuery($reservation_id = null, $user_email = null, $building_id = null, $room_number = null, 
+    $start_date = null, $end_date = null, $payment_done = null, $include_deleted = false, $order = "end_time ASC"){
+        // echo 'TEST<br>';
+        $query = $this->db->table('reservation')
+            // ->count()
+            ->select('
+                        reservation.id as reservation_id,
+                        reservation.notes as reservation_notes,
+                        reservation.start_time as reservation_start_time,
+                        reservation.end_time as reservation_end_time,
+                        reservation.type as type,
+                        reservation.price as reservation_price,
+                        reservation.payment_done as reservation_payment_done,
+                        reservation.contract_number as reservation_contract_number,
+                        reservation.created_at as reservation_created_at,
+                        reservation.updated_at as reservation_updated_at,
+                        reservation.deleted_at as reservation_deleted_at,
+                        user.id as user_id,
+                        user.email as user_email,
+                        user.firstname as user_firstname,
+                        user.lastname as user_lastname,
+                        slot.id as slot_id,
+                        slot.name as slot_name,
+                        room.id as room_id,
+                        room.number as room_number,
+                        building.id as building_id,
+                        building.name as building_name,
+                    ')
+            ->join('user', 'user.id = reservation.user_id')
+            ->join('slot', 'slot.id = reservation.slot_id')
+            ->join('room', 'room.id = reservation.slot_room_id')
+            ->join('building', 'building.id = reservation.slot_room_building_id')
+            ->orderBy($order);
+
+            if($include_deleted == false) {
+                // echo "include_deleted = $include_deleted";
+                $query->where('reservation.deleted_at IS NULL');
+            }
+            // by id
+            if(!is_null($reservation_id) && $reservation_id){
+                // echo "reservation_id = $reservation_id <br>";
+                $query->where('reservation.id = ' . $reservation_id);
+            }
+            if(!is_null($user_email) && $user_email){
+                // echo "user_email = $user_email <br>";
+                $query->where('user.email = "' . $user_email . '"');
+            }
+            if(!is_null($building_id) && $building_id){
+                // echo "building_id = $building_id <br>";
+                $query->where('building.id = ' . $building_id);
+            }
+            // by room_number (part containing)
+            if(!is_null($room_number) && $room_number){
+                // echo "room_number LIKE %$room_number% <br>";
+                $query->where('room.number LIKE "%' . $room_number . '%"');
+            }
+            if(!is_null($payment_done) && $payment_done){
+                // echo "payment_done = $payment_done <br>";
+                $query->where('reservation.payment_done = ' . $payment_done);
+            }
+            
+            // filter by dates
+            if(!is_null($start_date) && $start_date){
+                // echo "where('reservation.start_time (actually a start) >= ' . $start_date)" ;
+                $query->where('reservation.start_time '. $start_date);
+            }
+            if(!is_null($end_date) && $end_date){
+                // echo "where('reservation.end_time (actually the end) <= ' . $end_date)" ;
+                $query->where('reservation.end_time ' . $end_date);
+            }
+
+        return $query->countAllResults();
+
+    }
+
 
     public function findJoinFullDataOrdered($reservation_id)
     {
