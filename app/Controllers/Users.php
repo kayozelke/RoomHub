@@ -13,11 +13,6 @@ class Users extends BaseController
 
     public function index()
     {
-        // not using it because we have defined our filters
-        // if(!(session()->get('isLoggedIn'))){
-        //     return redirect()->to('/');
-        // }
-
         $preData = [];
         $model = new UserModel();
         $preData['data'] = $model->findAll();
@@ -27,16 +22,12 @@ class Users extends BaseController
         $fullData['data'] = [];
 
         foreach ($preData['data'] as $row) {
-            // print_r("<br>");
-            // print_r($row);
+            
             $modified_row = $row;
             $modified_row['privileges_level_name'] = $PrivilegesManagerObject->levelToNameStr($row['privileges_level']);
             array_push($fullData['data'], $modified_row);
         }
 
-        // print_r("<br>");
-        // print_r($fullData['0']);
-        // return null;
 
         echo view('templates/header');
         echo view('users/users', $fullData);
@@ -53,7 +44,6 @@ class Users extends BaseController
         $PrivilegesManagerObject = new PrivilegesManager();
         $data['data']['privileges_level_name'] = $PrivilegesManagerObject->levelToNameStr($data['data']['privileges_level']);
 
-        // $data['user_reservations'] = (new ReservationModel())->findAllWhereUserJoinFullDataOrdered($id);
 
         echo view('templates/header');
         echo view('users/info', $data);
@@ -70,11 +60,6 @@ class Users extends BaseController
         $userData = $user_model->find($id);
 
         $next_level = $userData['privileges_level'] + 1;
-        // print_r($userData);
-
-        // print_r("<br>");
-        // print_r($next_level);
-        // return null;
 
         $PrivilegesManagerObject = new PrivilegesManager();
         $PrivilegesManagerObject->setPrivilegesLevel($id, $next_level);
@@ -91,10 +76,6 @@ class Users extends BaseController
         $userData = $user_model->find($id);
 
         $next_level = $userData['privileges_level'] - 1;
-        // print_r($userData);
-
-        // print_r("<br>");
-        // print_r($next_level);
 
         $PrivilegesManagerObject = new PrivilegesManager();
         $PrivilegesManagerObject->setPrivilegesLevel($id, $next_level);
@@ -112,7 +93,7 @@ class Users extends BaseController
         $customConfig = new CustomConfig();
 
 
-        if ($this->request->getMethod() == 'post') {  // check if method is POST, because GET could cause some problems
+        if ($this->request->getPost()) {
 
             //validations
             $rules = [

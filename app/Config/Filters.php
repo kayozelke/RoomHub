@@ -26,7 +26,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'auth'          => \App\Filters\Auth::class,
-        'noauth'        => \App\Filters\Noauth::class,
+        'noauth'        => \App\Filters\NoAuth::class,
         // 'userscheck'    => \App\Filters\UsersClassCheck::class,
         'usermoderator' => \App\Filters\UserModerator::class,
     ];

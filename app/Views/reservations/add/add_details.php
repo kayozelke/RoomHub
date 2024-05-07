@@ -96,7 +96,7 @@
                                 </li>
                                 <li>
 
-                                    <span class="fw-light">Maksymalna długość najmu może być równa liczbie dni danego miesiąca.</span>
+                                    <span class="fw-light">Maksymalna długość najmu może być wynosić 31 dni.</span>
                                 </li>
                                 <li>
                                     <span class="fw-light">Wysokość opłaty należy wprowadzić ręcznie.</span>

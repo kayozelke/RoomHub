@@ -11,9 +11,6 @@ class Roomtypes extends BaseController
 {
     public function index()
     {
-        // TODO make it handled in routes
-        // if(!(session()->get('isLoggedIn')))
-        //     return redirect()->to('/');
         
         $data = [];
         $model = new RoomTypeModel();

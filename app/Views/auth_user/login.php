@@ -8,13 +8,11 @@
             <form class="" action="/" method="post">
                 <div class="form-group">
                     <label for="email">Adres email</label>
-                    <!-- TODO - add required -->
-                    <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">
+                    <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>" required> 
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło</label>
-                    <!-- TODO - add required -->
-                    <input type="password" class="form-control" name="password" id="password" value="<?= set_value('password') ?>">
+                    <input type="password" class="form-control" name="password" id="password" value="<?= set_value('password') ?>" required>
                 </div>
 
                 <div class="pt-3">
@@ -33,10 +31,6 @@
                         <button type="submit" class="btn btn-primary bg-gradient">Zaloguj</button>
                     </div>
                 </div>
-
-                <!-- <div class="col-12 col-sm-8 text-right">
-                        <a href="/register">Don't have an account yet</a>
-                    </div> -->
 
             </form>
         </div>

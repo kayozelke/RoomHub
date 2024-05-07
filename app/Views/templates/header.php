@@ -20,7 +20,7 @@
 <body class="d-flex flex-column h-100" onload="startTime()">
 
 
-    <!-- Dark mode button must have element-->
+    <!-- Dark mode button's must-have element-->
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -37,55 +37,10 @@
         </symbol>
     </svg>
 
-    <!-- default dark mode button -->
-    <!-- <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-        <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-            <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-                <use href="#circle-half"></use>
-            </svg>
-            <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                        <use href="#sun-fill"></use>
-                    </svg>
-                    Light
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                        <use href="#moon-stars-fill"></use>
-                    </svg>
-                    Dark
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-            <li>
-                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-                    <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                        <use href="#circle-half"></use>
-                    </svg>
-                    Auto
-                    <svg class="bi ms-auto d-none" width="1em" height="1em">
-                        <use href="#check2"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
-    </div> -->
-
 
 
     <?php
-    $uri = service('uri'); //loading uri library which provides us some methods, where we can check segments of URL
+    $uri = service('uri'); //loading uri library which provides some methods. we can check segments of URL
     ?>
 
     <!-- navbar -->
@@ -97,29 +52,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <?php /*if (session()->get('isLoggedIn')) :  ?>
-                        <li class="nav-item">
-                            <a class="nav-link <?= ($uri->getSegment(1)) == 'dashboard' ? 'active' : null ?>" href="/dashboard">Podsumowanie</a> <?php // segment first of our URL 
-                                                                                                                                                    ?>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link <?= ($uri->getSegment(1)) == 'users' ? 'active' : null ?>" href="/users">Użytkownicy</a> <?php // segment first of our URL 
-                                                                                                                                        ?>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link <?= ($uri->getSegment(1)) == 'buildings' ? 'active' : null ?>" href="/buildings">Budynki</a> <?php // segment first of our URL 
-                                                                                                                                            ?>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link <?= ($uri->getSegment(1)) == 'rooms' ? 'active' : null ?>" href="/rooms">Pokoje</a> <?php // segment first of our URL 
-                                                                                                                                    ?>
-                        </li>
-
-                    <?php endif */
-                    ?>
 
 
                 </ul>
@@ -252,7 +184,19 @@
 
     </svg>
 
-    <main class="d-flex flex-nowrap <?= (!session()->get('isLoggedIn')) ? 'bg-img-room' : null ?>">
+    <?php
+        // randomize background if not logged in
+        $bg_class = "";
+        if(!session()->get('isLoggedIn')){
+            $bg_array = ['bg-img-room','bg-img-books','bg-img-floor','bg-img-building','bg-img-people'];
+            $random_index = array_rand($bg_array, 1);
+
+            // print_r($random_index);
+            $bg_class = $bg_array[$random_index];
+        }
+    ?>
+
+    <main class="d-flex flex-nowrap <?=$bg_class?>">
 
         <!-- sidebar -->
         <?php if (session()->get('isLoggedIn')) : ?>
@@ -318,14 +262,6 @@
                                 </svg>
                             </a>
                         </li>
-                        <!-- System settings -->
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Ustawienia">
-                                <svg class="bi pe-none" width="24" height="24" role="img">
-                                    <use xlink:href="#gear"></use>
-                                </svg>
-                            </a>
-                        </li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -371,14 +307,6 @@
                             <a href="/users" class="nav-link py-3 border-bottom rounded-0 <?= ($uri->getSegment(1)) == 'users' ? 'bg-secondary-subtle' : null ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Użytkownicy">
                                 <svg class="bi pe-none" width="14" height="14" role="img">
                                     <use xlink:href="#people-fill"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <!-- System settings -->
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Ustawienia">
-                                <svg class="bi pe-none" width="14" height="14" role="img">
-                                    <use xlink:href="#gear"></use>
                                 </svg>
                             </a>
                         </li>

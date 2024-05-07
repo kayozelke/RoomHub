@@ -3,7 +3,6 @@
             <div class="container">
                 <h3><i class="bi-building"></i> Edycja istniejącego obiektu</h3>
                 <hr>
-                <!-- <h6>np. <em>Dom Studencki nr 1</em></h6><br> -->
                 <form class="" method="post" <?php
                                                 // Do not need to use 'action', because we are redirecting to ourself
                                                 //action="/buildings/edit/ ... " 
@@ -54,9 +53,6 @@
                             <button type="submit" class="btn btn-primary bg-gradient">Zapisz</button>
                             <a href="/buildings/info/<?= $data['id'] ?>" class="btn btn-danger bg-gradient">Anuluj</a>
                         </div>
-                        <!-- <div class="col-12 col-sm-8 text-right">
-                            <a href="/">Already have an account</a>
-                        </div> -->
                     </div>
                 </form>
             </div>

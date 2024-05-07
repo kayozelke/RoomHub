@@ -24,9 +24,6 @@ class UserModel extends Model{
     protected $beforeUpdate = ['beforeUpdate'];
 
 
-
-
-
     protected function beforeInsert(array $data){
         $data = $this->passwordHash($data);
         return $data;
