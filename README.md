@@ -1,59 +1,28 @@
-# CodeIgniter 4 Framework
+# RoomHub - Student Dormitory Administration Web App
 
-## What is CodeIgniter?
+This repository contains the source code for a responsive web application designed to streamline administrative tasks for a student dormitory complex. The software facilitates electronic record-keeping and data storage on a server, improving efficiency and organization for dormitory administration staff. The project was the author's engineering thesis (bachelor studies at PUT POZNAN), which he defended with a grade of 5 at 2024.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Features
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- **Content Management System**: Easily manage records for dormitory buildings, rooms, and residents.
+- **User and Room Management**:
+  - Add and modify information about buildings and rooms.
+  - Assign users to rooms and manage room reservations.
+- **User Roles**:
+  - **Residents**: Access limited functionalities related to their room assignments and personal data.
+  - **Administration Staff**: Access full administrative functionalities, including managing building and room details and assigning residents.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Technologies Used
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+- **Framework**: CodeIgniter 4.4.3 (PHP 8.2.14)
+- **Database**: MySQL
+- **Frontend**: Bootstrap, CSS, Datatables, JS with AJAX for user interface components
+- **Cloud Deployment**: Google Cloud Platform
 
-## Important Change with index.php
+## License
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Author
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+kayozelke
